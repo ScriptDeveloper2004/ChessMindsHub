@@ -33,13 +33,13 @@
             color: #fff;
             text-decoration: none;
             font-weight: bold;
-            margin: 0 10px;
+            margin: 0 15px;
         }
 
         section {
             padding: 2em;
             margin-top: 1em;
-            max-width: 800px;
+            max-width: 1000px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -92,14 +92,26 @@
 
         .links-section {
             margin-top: 2em;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
         }
 
         .links-section a {
             color: #fff;
             text-decoration: none;
-            display: block;
             margin-bottom: 10px;
             font-weight: bold;
+        }
+
+        #refresh-button {
+            margin-top: 1em;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
         }
     </style>
 </head>
@@ -118,7 +130,12 @@
     </header>
 
     <nav>
-
+        <a href="#about">About</a>
+        <a href="#lichess-username">Your Lichess</a>
+        <a href="#news-updates">News/Updates</a>
+        <a href="#donate">Donate</a>
+        <a href="#faq">FAQ</a>
+        <a href="#lichess-blogs">Lichess Blogs</a>
     </nav>
 
     <section id="about">
@@ -141,22 +158,16 @@
     </section>
 
     <footer>
+        <button id="refresh-button" onclick="refreshPage()">Refresh Lichess Style</button>
         <p>&copy; 2024 Lichess Connect Hub. All rights reserved.</p>
     </footer>
 
     <div class="links-section">
+        <a href="#about">About Us</a>
         <a href="#news-updates">News/Updates</a>
-        <a href="#chess-basics">Chess Basics</a>
-        <a href="#chess-openings">Chess Openings</a>
-        <a href="#community-forum">Community Forum</a>
-        <a href="#tournament-calendar">Tournament Calendar</a>
-        <a href="#lichess-blogs">Lichess Blogs</a>
-        <a href="#chess-resources">Chess Resources</a>
-        <a href="#contact-us">Contact Us</a>
-        <a href="#privacy-policy">Privacy Policy</a>
-        <a href="#terms-of-service">Terms of Service</a>
-        <a href="#faq">FAQ</a>
         <a href="#donate">Donate</a>
+        <a href="#faq">FAQ</a>
+        <a href="#lichess-blogs">Lichess Blogs</a>
     </div>
 
     <script>
@@ -207,6 +218,12 @@
         function declineCookies() {
             localStorage.setItem('cookieConsent', 'declined');
             cookieConsent.style.display = 'none';
+        }
+
+        // Refresh page with Lichess style
+        function refreshPage() {
+            alert('Refreshing page with Lichess style...');
+            location.reload();
         }
     </script>
 </body>
