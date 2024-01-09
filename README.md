@@ -15,12 +15,12 @@ Lichess Connect Hub is an open-source platform designed to enhance your Lichess 
 
 ## Getting Started
 
-1. Visit the [Lichess Connect Hub](https://your-lichess-connect-hub-url.com).
+1. Visit the [Lichess Connect Hub](https://scriptdeveloper2004.github.io/ChessMindsHub/)
 2. Explore the available content, join the community, and consider making a donation to support the platform.
 
 ## Contributing
 
-We welcome contributions! If you have ideas for new features or improvements, please [open an issue](https://github.com/your-github-username/your-lichess-connect-hub-repo/issues) or submit a pull request.
+We welcome contributions! If you have ideas for new features or improvements, please [open an issue](https://github.com/ScriptDeveloper2004/ChessMindsHub/issues ) or submit a pull request.
 
 ## License
 
@@ -31,5 +31,5 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-For more information and updates, visit the [Lichess Connect Hub GitHub Repository](https://github.com/your-github-username/your-lichess-connect-hub-repo).
+For more information and updates, visit the [Lichess Connect Hub GitHub Repository](https://github.com/ScriptDeveloper2004/ChessMindsHub ).
 
