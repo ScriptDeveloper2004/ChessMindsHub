@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lichess Connect Hub</title>
+    <title>Your Lichess Page</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -23,7 +23,7 @@
 
         nav {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             background-color: #34495e;
             padding: 1em 0;
             margin-top: 1em;
@@ -42,6 +42,7 @@
             max-width: 1000px;
             margin-left: auto;
             margin-right: auto;
+            text-align: center;
         }
 
         footer {
@@ -55,64 +56,21 @@
             z-index: 0;
         }
 
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        }
-
         input[type="text"] {
             padding: 8px;
             width: 70%;
         }
 
-        #lichess-username-list {
-            margin-top: 1em;
-        }
-
-        .username-list-item {
-            margin-bottom: 0.5em;
-        }
-
-        #cookie-consent {
-            background-color: #2c3e50;
+        button {
+            padding: 8px;
+            background-color: #4CAF50;
             color: #fff;
-            padding: 1em;
-            position: fixed;
-            bottom: 50px;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            display: none;
-            z-index: 1;
+            border: none;
+            cursor: pointer;
         }
 
-        #cookie-buttons {
-            margin-top: 1em;
-        }
-
-        .links-section {
-            margin-top: 2em;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-
-        .links-section a {
-            color: #fff;
-            text-decoration: none;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-
-        /* Lichess Your Lichess Page Styling */
-        #lichess-page {
-            display: none;
-        }
-
-        #lichess-username-search {
-            margin-top: 1em;
+        button:hover {
+            background-color: #45a049;
         }
 
         #search-result {
@@ -122,51 +80,16 @@
 </head>
 
 <body>
-    <div id="cookie-consent">
-        <p>This website uses cookies to enhance your experience. Accept or decline?</p>
-        <div id="cookie-buttons">
-            <button onclick="acceptCookies()">Accept</button>
-            <button onclick="declineCookies()">Decline</button>
-        </div>
-    </div>
-
     <header>
-        <h1>Lichess Connect Hub</h1>
+        <h1>Your Lichess Page</h1>
     </header>
 
     <nav>
-        <a href="#about">About</a>
-        <a href="#lichess-username">Your Lichess</a>
-        <a href="#news-updates">News/Updates</a>
-        <a href="#donate">Donate</a>
-        <a href="#faq">FAQ</a>
-        <a href="#lichess-blogs">Lichess Blogs</a>
-        <a href="#lichess-page">Your Lichess Page</a>
+        <a href="index.html">Home</a>
     </nav>
 
-    <section id="about">
-        <h2>About this Website</h2>
-        <p>Welcome to Lichess Connect Hub! This open-source platform is dedicated to chess enthusiasts, providing a central hub for connecting with the Lichess community. Whether you're a seasoned grandmaster or a beginner, explore the vibrant world of chess, share your victories, and engage with like-minded players. Discover valuable resources, stay updated with news, and enhance your chess experience with Lichess Connect Hub.</p>
-    </section>
-
-    <section id="lichess-username">
-        <h2>Your Lichess</h2>
-        <p>Enter your Lichess username to seamlessly connect with the chess community. Share your triumphs, discuss strategies, and stay engaged with fellow enthusiasts. Your personalized Lichess experience is just a click away!</p>
-        <form id="lichess-form">
-            <input type="text" id="lichess-username-input" placeholder="Your Lichess Username">
-            <button type="button" onclick="saveUsername()">Submit</button>
-        </form>
-        <div id="lichess-username-list">
-            <h3>Connected Users</h3>
-            <!-- Display the list of connected usernames -->
-            <div id="username-list"></div>
-        </div>
-    </section>
-
-    <!-- Your Lichess Page -->
-    <section id="lichess-page">
-        <h2>Your Lichess</h2>
-        <p>Search for a Lichess username to see if it's connected:</p>
+    <section>
+        <h2>Search Lichess User</h2>
         <form id="lichess-username-search">
             <input type="text" id="search-lichess-username" placeholder="Enter Lichess Username">
             <button type="button" onclick="searchUsername()">Search</button>
@@ -175,69 +98,21 @@
     </section>
 
     <footer>
-        <p>&copy; 2024 Lichess Connect Hub. All rights reserved.</p>
+        <p>&copy; 2024 Your Lichess Page. All rights reserved.</p>
     </footer>
 
     <script>
         // Add local storage functionality for Lichess username
-        const lichessForm = document.getElementById('lichess-form');
-        const usernameInput = document.getElementById('lichess-username-input');
-        const usernameList = document.getElementById('username-list');
-        const lichessPage = document.getElementById('lichess-page');
-        const searchResult = document.getElementById('search-result');
+        const storedUsernames = JSON.parse(localStorage.getItem('lichessUsernames')) || [];
 
-        // Load stored usernames on page load
-        window.onload = function () {
-            const storedUsernames = JSON.parse(localStorage.getItem('lichessUsernames')) || [];
-            displayUsernames(storedUsernames);
-        };
-
-        // Save username to local storage
-        function saveUsername() {
-            const username = usernameInput.value.trim();
-            if (username !== '') {
-                const storedUsernames = JSON.parse(localStorage.getItem('lichessUsernames')) || [];
-                storedUsernames.push(username);
-                localStorage.setItem('lichessUsernames', JSON.stringify(storedUsernames));
-                displayUsernames(storedUsernames);
-                alert('Lichess username connected successfully!');
-            } else {
-                alert('Please enter a valid Lichess username.');
-            }
-        }
-
-        // Display connected usernames
-        function displayUsernames(usernames) {
-            usernameList.innerHTML = '';
-            usernames.forEach((username, index) => {
-                const listItem = document.createElement('div');
-                listItem.className = 'username-list-item';
-                listItem.textContent = `${index + 1}. ${username}`;
-                usernameList.appendChild(listItem);
-            });
-        }
-
-        // Lichess Search Username Functionality
+        // Search Lichess Username Functionality
         function searchUsername() {
             const searchInput = document.getElementById('search-lichess-username').value.trim();
-            const storedUsernames = JSON.parse(localStorage.getItem('lichessUsernames')) || [];
             const found = storedUsernames.includes(searchInput);
+            const searchResult = document.getElementById('search-result');
             searchResult.innerHTML = found
                 ? `<p>${searchInput} is connected!</p>`
                 : `<p>${searchInput} is not connected.</p>`;
-        }
-
-        // Cookie consent functionality
-        const cookieConsent = document.getElementById('cookie-consent');
-
-        function acceptCookies() {
-            localStorage.setItem('cookieConsent', 'accepted');
-            cookieConsent.style.display = 'none';
-        }
-
-        function declineCookies() {
-            localStorage.setItem('cookieConsent', 'declined');
-            cookieConsent.style.display = 'none';
         }
     </script>
 </body>
