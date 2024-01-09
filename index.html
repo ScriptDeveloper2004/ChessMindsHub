@@ -12,6 +12,7 @@
             margin: 0;
             padding: 0;
             color: #fff;
+            transition: background-color 0.3s ease;
         }
 
         header {
@@ -36,6 +37,7 @@
 
         section {
             padding: 2em;
+            margin-top: 1em;
         }
 
         footer {
@@ -62,10 +64,15 @@
 
         button {
             padding: 8px;
-            background-color: #2c3e50;
+            background-color: #4caf50;
             color: #fff;
             border: none;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
         }
 
         #lichess-username-list {
@@ -143,6 +150,11 @@
         </div>
     </section>
 
+    <section id="theme-change">
+        <h2>Change Website Theme</h2>
+        <button onclick="changeTheme()">Change Theme</button>
+    </section>
+
     <footer>
         <p>&copy; 2024 Lichess Connect Hub. All rights reserved.</p>
     </footer>
@@ -195,6 +207,14 @@
         function declineCookies() {
             localStorage.setItem('cookieConsent', 'declined');
             cookieConsent.style.display = 'none';
+        }
+
+        // Theme change functionality
+        function changeTheme() {
+            const currentBackgroundColor = window.getComputedStyle(document.body).backgroundColor;
+            const isGreyTheme = currentBackgroundColor === 'rgb(31, 39, 50)';
+
+            document.body.style.backgroundColor = isGreyTheme ? '#f0f0f0' : '#1f2732';
         }
 
         // Show cookie consent if not already accepted
