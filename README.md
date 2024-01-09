@@ -9,7 +9,7 @@ Lichess Connect Hub is an open-source platform designed to enhance your Lichess 
 ## Features
 
 - **Chess Content:** Access a wide range of content from chess basics to expert-level strategies.
-- **Community Engagement:** Connect with fellow Lichess enthusiasts, share your triumphs, and discuss strategies.
+- **Community Engagement:** Connect with fellow Lichess by searching their id on this platform .
 - **Donation Platform:** Support the Lichess Connect Hub community through secure GPay and PayPal donations.
 - **FAQ Section:** Find answers to commonly asked questions about the website.
 
