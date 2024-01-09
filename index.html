@@ -4,102 +4,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChessMinds Hub</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f8f8f8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
         }
 
         header {
-            background-color: #333;
+            background-color: #4CAF50;
             color: #fff;
             text-align: center;
-            padding: 1em;
+            padding: 20px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        p {
+            margin: 10px 0 0;
+        }
+
+        #content {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        #lichessInput {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        #lichessInput label {
+            margin-right: 10px;
+        }
+
+        #lichessInput input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 200px;
+        }
+
+        #storedUsername {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        #about {
+            margin-top: 20px;
+        }
+
+        #about h2 {
+            color: #4CAF50;
         }
 
         nav {
+            margin-top: 20px;
             display: flex;
             justify-content: space-around;
-            background-color: #555;
-            padding: 1em 0;
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
         }
 
         nav a {
             color: #fff;
             text-decoration: none;
-            font-weight: bold;
-        }
-
-        section {
-            padding: 2em;
-        }
-
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1em;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
         }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const storedUsername = localStorage.getItem('lichessUsername');
+            if (storedUsername) {
+                document.getElementById('storedUsername').innerText = `Stored Lichess Username: ${storedUsername}`;
+            }
+        });
+
+        document.getElementById('username').addEventListener('input', function () {
+            const usernameInput = this.value.trim();
+            localStorage.setItem('lichessUsername', usernameInput);
+        });
+    </script>
+    <title>ChessHub - Learn and Play Chess</title>
 </head>
 
 <body>
     <header>
-        <h1>ChessMinds Hub</h1>
+        <h1>ChessHub</h1>
+        <p>Learn and Play Chess</p>
     </header>
 
+    <section id="content">
+        <h2>Welcome to ChessHub!</h2>
+        <p>Explore a variety of chess-related content, from tutorials to strategy guides, all freely available for chess enthusiasts.</p>
+
+        <div id="lichessInput">
+            <label for="username">Enter your Lichess username:</label>
+            <input type="text" id="username" placeholder="Your Lichess username">
+        </div>
+
+        <p id="storedUsername"></p>
+
+        <div id="about">
+            <h2>About ChessHub</h2>
+            <p>ChessHub is a community-driven platform dedicated to providing valuable chess content. Whether you're a beginner or an experienced player, discover resources to enhance your skills and enjoy the world of chess.</p>
+        </div>
+    </section>
+
     <nav>
-        <a href="about.html">About Us</a>
-        <a href="action.html">Do Action</a>
-        <a href="challenges.html">Challenges</a>
-        <a href="faq.html">FAQ</a>
-        <a href="lichess_team.html">Lichess Team</a>
+        <a href="#about">About Us</a>
+        <a href="#faq">FAQ</a>
+        <a href="#updates">New Updates</a>
+        <a href="#lichess-team">Lichess Team</a>
     </nav>
 
-    <section id="basics">
-        <h2>Chess Basics 101</h2>
-        <p>Learn the fundamental rules of chess, essential openings, and key strategies to kickstart your chess journey.</p>
-        <!-- Add more detailed content here -->
-    </section>
-
-    <section id="tactics">
-        <h2>Mastering Tactics</h2>
-        <p>Sharpen your tactical skills with interactive puzzles and in-depth lessons, improving your ability to spot opportunities on the board.</p>
-        <!-- Add more detailed content here -->
-    </section>
-
-    <section id="strategy">
-        <h2>Strategic Mastery</h2>
-        <p>Delve into the nuances of strategic play, analyzing famous games and developing a deeper understanding of positional chess.</p>
-        <!-- Add more detailed content here -->
-    </section>
-
-    <section id="endgame">
-        <h2>Endgame Excellence</h2>
-        <p>Explore comprehensive lessons focused on endgame techniques and principles, turning you into a formidable player in the endgame phase.</p>
-        <!-- Add more detailed content here -->
-    </section>
-
-    <section id="insights">
-        <h2>GM Insights</h2>
-        <p>Gain exclusive insights with interviews and analyses from Grandmasters, offering valuable perspectives and strategies to enhance your play.</p>
-        <!-- Add more detailed content here -->
-    </section>
-
-    <section id="challenges">
-        <h2>Chess Challenges</h2>
-        <p>Participate in weekly puzzles, games, and tournaments, putting your skills to the test and competing with other chess enthusiasts.</p>
-        <!-- Add more detailed content here -->
-    </section>
-
     <footer>
-        <p>&copy; 2024 ChessMinds Hub. All rights reserved.</p>
+        <p>Contribute on <a href="https://github.com/yourusername/chesshub" target="_blank">GitHub</a></p>
     </footer>
 </body>
 
