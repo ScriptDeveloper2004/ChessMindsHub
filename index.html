@@ -11,7 +11,7 @@
             margin: 0;
             padding: 0;
             color: #fff;
-            transition: background-color 0.3s ease;
+            background-color: #1f2732;
         }
 
         header {
@@ -39,6 +39,9 @@
         section {
             padding: 2em;
             margin-top: 1em;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         footer {
@@ -63,77 +66,6 @@
             width: 70%;
         }
 
-        .switch-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 1em;
-        }
-
-        .switch {
-            display: inline-block;
-            position: relative;
-            width: 60px;
-            height: 34px;
-        }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        input:checked+.slider {
-            background-color: #2196F3;
-        }
-
-        input:checked+.slider:before {
-            -webkit-transform: translateX(26px);
-            -ms-transform: translateX(26px);
-            transform: translateX(26px);
-        }
-
-        .color-choices {
-            margin-top: 1em;
-        }
-
-        .color-choice {
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            margin-right: 10px;
-            cursor: pointer;
-            border-radius: 50%;
-        }
-
-        .lichess-theme { background-color: #1f2732; }
-        .black-theme { background-color: #000; }
-        .blue-theme { background-color: #3498db; }
-        .yellow-theme { background-color: #f1c40f; }
-
         #lichess-username-list {
             margin-top: 1em;
         }
@@ -157,6 +89,18 @@
         #cookie-buttons {
             margin-top: 1em;
         }
+
+        .links-section {
+            margin-top: 2em;
+        }
+
+        .links-section a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -174,30 +118,17 @@
     </header>
 
     <nav>
-        <a href="#about">About</a>
-        <a href="#lichess-username">Your Lichess</a>
-        <a href="#news-updates">News/Updates</a>
-        <a href="#chess-basics">Chess Basics</a>
-        <a href="#chess-openings">Chess Openings</a>
-        <a href="#community-forum">Community Forum</a>
-        <a href="#tournament-calendar">Tournament Calendar</a>
-        <a href="#lichess-blogs">Lichess Blogs</a>
-        <a href="#chess-resources">Chess Resources</a>
-        <a href="#contact-us">Contact Us</a>
-        <a href="#privacy-policy">Privacy Policy</a>
-        <a href="#terms-of-service">Terms of Service</a>
-        <a href="#faq">FAQ</a>
-        <a href="#donate">Donate</a>
+        
     </nav>
 
     <section id="about">
         <h2>About this Website</h2>
-        <p>Welcome to Lichess Connect Hub! Dive into the vibrant world of chess and connect with the Lichess community. This platform is designed for passionate chess players, whether you're a seasoned grandmaster or just starting your chess journey. Explore, connect, and elevate your chess experience with Lichess Connect Hub.</p>
+        <p>Welcome to Lichess Connect Hub! This open-source platform is dedicated to chess enthusiasts, providing a central hub for connecting with the Lichess community. Whether you're a seasoned grandmaster or a beginner, explore the vibrant world of chess, share your victories, and engage with like-minded players. Discover valuable resources, stay updated with news, and enhance your chess experience with Lichess Connect Hub.</p>
     </section>
 
     <section id="lichess-username">
         <h2>Your Lichess</h2>
-        <p>Enter your Lichess username to connect with the vibrant chess community. Share your victories, discuss strategies, and stay engaged with fellow enthusiasts. Your Lichess experience is just a click away!</p>
+        <p>Enter your Lichess username to seamlessly connect with the chess community. Share your triumphs, discuss strategies, and stay engaged with fellow enthusiasts. Your personalized Lichess experience is just a click away!</p>
         <form id="lichess-form">
             <input type="text" id="lichess-username-input" placeholder="Your Lichess Username">
             <button type="button" onclick="saveUsername()">Submit</button>
@@ -209,26 +140,22 @@
         </div>
     </section>
 
-    <section id="theme-change">
-        <h2>Change Website Theme</h2>
-        <div class="switch-container">
-            <label>Off</label>
-            <label class="switch">
-                <input type="checkbox" onclick="changeTheme()">
-                <span class="slider"></span>
-            </label>
-            <label>On</label>
-        </div>
-        <div class="color-choices">
-            <div class="color-choice lichess-theme" onclick="changeColor('#1f2732')"></div>
-            <div class="color-choice black-theme" onclick="changeColor('#000')"></div>
-            <div class="color-choice blue-theme" onclick="changeColor('#3498db')"></div>
-            <div class="color-choice yellow-theme" onclick="changeColor('#f1c40f')"></div>
-        </div>
-    </section>
-
     <footer>
         <p>&copy; 2024 Lichess Connect Hub. All rights reserved.</p>
+        <div class="links-section">
+            <a href="#news-updates">News/Updates</a>
+            <a href="#chess-basics">Chess Basics</a>
+            <a href="#chess-openings">Chess Openings</a>
+            <a href="#community-forum">Community Forum</a>
+            <a href="#tournament-calendar">Tournament Calendar</a>
+            <a href="#lichess-blogs">Lichess Blogs</a>
+            <a href="#chess-resources">Chess Resources</a>
+            <a href="#contact-us">Contact Us</a>
+            <a href="#privacy-policy">Privacy Policy</a>
+            <a href="#terms-of-service">Terms of Service</a>
+            <a href="#faq">FAQ</a>
+            <a href="#donate">Donate</a>
+        </div>
     </footer>
 
     <script>
@@ -279,19 +206,6 @@
         function declineCookies() {
             localStorage.setItem('cookieConsent', 'declined');
             cookieConsent.style.display = 'none';
-        }
-
-        // Theme change functionality
-        function changeTheme() {
-            const currentBackgroundColor = window.getComputedStyle(document.body).backgroundColor;
-            const isGreyTheme = currentBackgroundColor === 'rgb(31, 39, 50)';
-
-            document.body.style.backgroundColor = isGreyTheme ? '#1f2732' : '#f0f0f0';
-        }
-
-        // Change background color
-        function changeColor(color) {
-            document.body.style.backgroundColor = color;
         }
     </script>
 </body>
