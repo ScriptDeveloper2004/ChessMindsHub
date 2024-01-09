@@ -8,7 +8,6 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #1f2732;
             margin: 0;
             padding: 0;
             color: #fff;
@@ -27,12 +26,14 @@
             justify-content: space-around;
             background-color: #34495e;
             padding: 1em 0;
+            margin-top: 1em;
         }
 
         nav a {
             color: #fff;
             text-decoration: none;
             font-weight: bold;
+            margin: 0 10px;
         }
 
         section {
@@ -62,18 +63,76 @@
             width: 70%;
         }
 
-        button {
-            padding: 8px;
-            background-color: #4caf50;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+        .switch-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1em;
         }
 
-        button:hover {
-            background-color: #45a049;
+        .switch {
+            display: inline-block;
+            position: relative;
+            width: 60px;
+            height: 34px;
         }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked+.slider {
+            background-color: #2196F3;
+        }
+
+        input:checked+.slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        .color-choices {
+            margin-top: 1em;
+        }
+
+        .color-choice {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .lichess-theme { background-color: #1f2732; }
+        .black-theme { background-color: #000; }
+        .blue-theme { background-color: #3498db; }
+        .yellow-theme { background-color: #f1c40f; }
 
         #lichess-username-list {
             margin-top: 1em;
@@ -152,7 +211,20 @@
 
     <section id="theme-change">
         <h2>Change Website Theme</h2>
-        <button onclick="changeTheme()">Change Theme</button>
+        <div class="switch-container">
+            <label>Off</label>
+            <label class="switch">
+                <input type="checkbox" onclick="changeTheme()">
+                <span class="slider"></span>
+            </label>
+            <label>On</label>
+        </div>
+        <div class="color-choices">
+            <div class="color-choice lichess-theme" onclick="changeColor('#1f2732')"></div>
+            <div class="color-choice black-theme" onclick="changeColor('#000')"></div>
+            <div class="color-choice blue-theme" onclick="changeColor('#3498db')"></div>
+            <div class="color-choice yellow-theme" onclick="changeColor('#f1c40f')"></div>
+        </div>
     </section>
 
     <footer>
@@ -214,16 +286,13 @@
             const currentBackgroundColor = window.getComputedStyle(document.body).backgroundColor;
             const isGreyTheme = currentBackgroundColor === 'rgb(31, 39, 50)';
 
-            document.body.style.backgroundColor = isGreyTheme ? '#f0f0f0' : '#1f2732';
+            document.body.style.backgroundColor = isGreyTheme ? '#1f2732' : '#f0f0f0';
         }
 
-        // Show cookie consent if not already accepted
-        window.onload = function () {
-            const consentStatus = localStorage.getItem('cookieConsent');
-            if (consentStatus !== 'accepted') {
-                cookieConsent.style.display = 'block';
-            }
-        };
+        // Change background color
+        function changeColor(color) {
+            document.body.style.backgroundColor = color;
+        }
     </script>
 </body>
 
