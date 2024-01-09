@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lichess Connect Hub - Tic-Tac-Toe</title>
+    <title>Lichess Connect Hub - Hangman</title>
     <style>
         /* Lichess CSS styling */
         body {
@@ -41,44 +41,65 @@
             z-index: 0;
         }
 
-        .board {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-gap: 5px;
+        .word-display {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 5px;
             margin-top: 20px;
         }
 
-        .cell {
-            width: 100px;
-            height: 100px;
+        .letter {
+            width: 30px;
+            height: 30px;
             background-color: #353535;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 18px;
+            margin: 2px;
+        }
+
+        .keyboard {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-gap: 5px;
+            margin-top: 20px;
+        }
+
+        .key {
+            width: 30px;
+            height: 30px;
+            background-color: #353535;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
             cursor: pointer;
+        }
+
+        .key:hover {
+            background-color: #454545;
+        }
+
+        .hangman-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-top: 20px;
         }
     </style>
 </head>
 
 <body>
     <header>
-        <h1>Lichess Connect Hub - Tic-Tac-Toe</h1>
+        <h1>Lichess Connect Hub - Hangman</h1>
     </header>
 
     <section>
-        <div class="board" id="board">
-            <div class="cell" data-index="0"></div>
-            <div class="cell" data-index="1"></div>
-            <div class="cell" data-index="2"></div>
-            <div class="cell" data-index="3"></div>
-            <div class="cell" data-index="4"></div>
-            <div class="cell" data-index="5"></div>
-            <div class="cell" data-index="6"></div>
-            <div class="cell" data-index="7"></div>
-            <div class="cell" data-index="8"></div>
-        </div>
-        <p id="result"></p>
+        <div class="word-display" id="word-display"></div>
+        <div class="keyboard" id="keyboard"></div>
+        <img class="hangman-image" id="hangman-image" src="https://i.imgur.com/eMz5AA6.png" alt="Hangman Image">
     </section>
 
     <footer>
@@ -86,67 +107,79 @@
     </footer>
 
     <script>
-        const board = document.getElementById('board');
-        const cells = document.querySelectorAll('.cell');
-        const resultDisplay = document.getElementById('result');
+        const words = ['lichess', 'connect', 'hub', 'javascript', 'hangman', 'chess'];
+        let selectedWord = words[Math.floor(Math.random() * words.length)].toUpperCase();
+        let guessedLetters = [];
+        let incorrectAttempts = 0;
 
-        let currentPlayer = 'X';
-        let gameBoard = ['', '', '', '', '', '', '', '', ''];
-        let gameActive = true;
+        const wordDisplay = document.getElementById('word-display');
+        const keyboard = document.getElementById('keyboard');
+        const hangmanImage = document.getElementById('hangman-image');
 
-        board.addEventListener('click', handleCellClick);
+        initializeGame();
 
-        function handleCellClick(e) {
-            const index = e.target.dataset.index;
+        function initializeGame() {
+            guessedLetters = [];
+            incorrectAttempts = 0;
 
-            if (gameBoard[index] === '' && gameActive) {
-                gameBoard[index] = currentPlayer;
-                e.target.textContent = currentPlayer;
-                checkWinner();
-                switchPlayer();
-                if (gameActive) {
-                    computerMove();
+            // Display underscores for each letter in the word
+            displayWord();
+
+            // Create letter buttons for the keyboard
+            createKeyboard();
+        }
+
+        function displayWord() {
+            wordDisplay.innerHTML = '';
+            for (const letter of selectedWord) {
+                const letterElement = document.createElement('div');
+                letterElement.className = 'letter';
+                if (guessedLetters.includes(letter)) {
+                    letterElement.textContent = letter;
                 }
+                wordDisplay.appendChild(letterElement);
             }
         }
 
-        function switchPlayer() {
-            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-        }
-
-        function computerMove() {
-            const emptyCells = gameBoard.filter(cell => cell === '');
-            if (emptyCells.length > 0) {
-                const computerIndex = getComputerMoveIndex(emptyCells);
-                gameBoard[computerIndex] = currentPlayer;
-                cells[computerIndex].textContent = currentPlayer;
-                checkWinner();
-                switchPlayer();
+        function createKeyboard() {
+            keyboard.innerHTML = '';
+            for (let i = 65; i <= 90; i++) {
+                const letter = String.fromCharCode(i);
+                const keyElement = document.createElement('div');
+                keyElement.className = 'key';
+                keyElement.textContent = letter;
+                keyElement.addEventListener('click', () => handleLetterClick(letter));
+                keyboard.appendChild(keyElement);
             }
         }
 
-        function getComputerMoveIndex(emptyCells) {
-            // Change the logic based on the difficulty level
-            // Easy: Random move
-            // Medium: Random move or block if the player is about to win
-            // Hard: Smart move to win or block the player from winning
-            const difficulty = 'hard'; // Change difficulty level here
-
-            if (difficulty === 'easy') {
-                return emptyCells[Math.floor(Math.random() * emptyCells.length)];
-            } else if (difficulty === 'medium') {
-                // Implement medium difficulty logic here
-                // For now, it's the same as easy
-                return emptyCells[Math.floor(Math.random() * emptyCells.length)];
-            } else if (difficulty === 'hard') {
-                // Implement hard difficulty logic here
-                // For now, it's the same as medium
-                return emptyCells[Math.floor(Math.random() * emptyCells.length)];
+        function handleLetterClick(letter) {
+            if (!guessedLetters.includes(letter)) {
+                guessedLetters.push(letter);
+                if (!selectedWord.includes(letter)) {
+                    incorrectAttempts++;
+                    updateHangmanImage();
+                }
+                displayWord();
+                checkGameStatus();
             }
         }
 
-        function checkWinner() {
-            // ... (Rest of the code remains unchanged)
+        function updateHangmanImage() {
+            hangmanImage.src = `https://i.imgur.com/eMz5AA6.png`; // Replace with your hangman images
+        }
+
+        function checkGameStatus() {
+            const isWordGuessed = selectedWord.split('').every(letter => guessedLetters.includes(letter));
+            const isGameLost = incorrectAttempts >= 6;
+
+            if (isWordGuessed) {
+                alert('Congratulations! You guessed the word!');
+                initializeGame();
+            } else if (isGameLost) {
+                alert(`Sorry, you couldn't guess the word. The word was: ${selectedWord}`);
+                initializeGame();
+            }
         }
     </script>
 </body>
