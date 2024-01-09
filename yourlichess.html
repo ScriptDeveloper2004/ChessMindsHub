@@ -59,6 +59,7 @@
         input[type="text"] {
             padding: 8px;
             width: 70%;
+            margin-bottom: 10px;
         }
 
         button {
@@ -76,6 +77,14 @@
         #search-result {
             margin-top: 1em;
         }
+
+        #lichess-username-list {
+            margin-top: 1em;
+        }
+
+        .username-list-item {
+            margin-bottom: 0.5em;
+        }
     </style>
 </head>
 
@@ -85,10 +94,21 @@
     </header>
 
     <nav>
-        <a href="index.html">Home</a>
+        <a href="#">Home</a>
     </nav>
 
     <section>
+        <h2>Your Lichess Username</h2>
+        <form id="lichess-form">
+            <input type="text" id="lichess-username-input" placeholder="Enter Your Lichess Username">
+            <button type="button" onclick="saveUsername()">Submit</button>
+        </form>
+        <div id="lichess-username-list">
+            <h3>Connected Users</h3>
+            <!-- Display the list of connected usernames -->
+            <div id="username-list"></div>
+        </div>
+
         <h2>Search Lichess User</h2>
         <form id="lichess-username-search">
             <input type="text" id="search-lichess-username" placeholder="Enter Lichess Username">
@@ -103,11 +123,45 @@
 
     <script>
         // Add local storage functionality for Lichess username
-        const storedUsernames = JSON.parse(localStorage.getItem('lichessUsernames')) || [];
+        const lichessForm = document.getElementById('lichess-form');
+        const usernameInput = document.getElementById('lichess-username-input');
+        const usernameList = document.getElementById('username-list');
 
-        // Search Lichess Username Functionality
+        // Load stored usernames on page load
+        window.onload = function () {
+            const storedUsernames = JSON.parse(localStorage.getItem('lichessUsernames')) || [];
+            displayUsernames(storedUsernames);
+        };
+
+        // Save username to local storage
+        function saveUsername() {
+            const username = usernameInput.value.trim();
+            if (username !== '') {
+                const storedUsernames = JSON.parse(localStorage.getItem('lichessUsernames')) || [];
+                storedUsernames.push(username);
+                localStorage.setItem('lichessUsernames', JSON.stringify(storedUsernames));
+                displayUsernames(storedUsernames);
+                alert('Lichess username connected successfully!');
+            } else {
+                alert('Please enter a valid Lichess username.');
+            }
+        }
+
+        // Display connected usernames
+        function displayUsernames(usernames) {
+            usernameList.innerHTML = '';
+            usernames.forEach((username, index) => {
+                const listItem = document.createElement('div');
+                listItem.className = 'username-list-item';
+                listItem.textContent = `${index + 1}. ${username}`;
+                usernameList.appendChild(listItem);
+            });
+        }
+
+        // Lichess Search Username Functionality
         function searchUsername() {
             const searchInput = document.getElementById('search-lichess-username').value.trim();
+            const storedUsernames = JSON.parse(localStorage.getItem('lichessUsernames')) || [];
             const found = storedUsernames.includes(searchInput);
             const searchResult = document.getElementById('search-result');
             searchResult.innerHTML = found
