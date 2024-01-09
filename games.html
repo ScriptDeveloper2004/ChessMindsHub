@@ -115,7 +115,6 @@
         }
 
         function computerMove() {
-            // Implement the computer's move logic (easy, medium, hard levels)
             const emptyCells = gameBoard.filter(cell => cell === '');
             if (emptyCells.length > 0) {
                 const computerIndex = getComputerMoveIndex(emptyCells);
@@ -128,8 +127,22 @@
 
         function getComputerMoveIndex(emptyCells) {
             // Change the logic based on the difficulty level
-            // Currently, it's set to easy (random move)
-            return emptyCells[Math.floor(Math.random() * emptyCells.length)];
+            // Easy: Random move
+            // Medium: Random move or block if the player is about to win
+            // Hard: Smart move to win or block the player from winning
+            const difficulty = 'hard'; // Change difficulty level here
+
+            if (difficulty === 'easy') {
+                return emptyCells[Math.floor(Math.random() * emptyCells.length)];
+            } else if (difficulty === 'medium') {
+                // Implement medium difficulty logic here
+                // For now, it's the same as easy
+                return emptyCells[Math.floor(Math.random() * emptyCells.length)];
+            } else if (difficulty === 'hard') {
+                // Implement hard difficulty logic here
+                // For now, it's the same as medium
+                return emptyCells[Math.floor(Math.random() * emptyCells.length)];
+            }
         }
 
         function checkWinner() {
