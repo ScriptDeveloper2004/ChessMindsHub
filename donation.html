@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lichess Connect Hub - Donate</title>
+    <style>
+        /* Lichess CSS styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            background-color: #1e1e1e;
+        }
+
+        header {
+            background-color: #252525;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+        }
+
+        section {
+            padding: 2em;
+            margin-top: 1em;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #252525;
+            color: #fff;
+        }
+
+        footer {
+            background-color: #252525;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            z-index: 0;
+        }
+
+        #comment-section {
+            margin-top: 30px;
+        }
+
+        #comment-form {
+            margin-top: 20px;
+        }
+
+        #comments {
+            margin-top: 20px;
+        }
+
+        .comment {
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Lichess Connect Hub - Donate</h1>
+    </header>
+
+    <section>
+        <p>Your generosity helps support the Lichess Connect Hub community. Choose your preferred currency for donation:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Currency</th>
+                    <th>Conversion Rate</th>
+                    <th>Donate Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>£ (British Pound)</td>
+                    <td>1.0</td>
+                    <td><a href="https://www.paypal.com/uk/home" target="_blank">Donate via PayPal</a></td>
+                </tr>
+                <tr>
+                    <td>¢ (Cent)</td>
+                    <td>0.01</td>
+                    <td><a href="https://www.paypal.com" target="_blank">Donate via PayPal</a></td>
+                </tr>
+                <!-- Add more currency rows as needed -->
+            </tbody>
+        </table>
+
+        <p>Scan the QR code below to donate via GPay:</p>
+        <!-- Add your GPay QR code image or link here -->
+        <img src="your_gpay_qr_code_image.jpg" alt="GPay QR Code">
+
+        <p>Thank you for your contribution! You're making a positive impact on the Lichess Connect Hub.</p>
+
+        <!-- Comment Section -->
+        <div id="comment-section">
+            <h2>Donation Comments</h2>
+            <div id="comments"></div>
+            <form id="comment-form">
+                <label for="comment">Leave a comment about your donation:</label>
+                <br>
+                <textarea id="comment" rows="3" cols="40"></textarea>
+                <br>
+                <button type="button" onclick="submitComment()">Submit Comment</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Lichess Connect Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Retrieve comments from local storage on page load
+        window.onload = function () {
+            displayComments();
+        };
+
+        // Save comment to local storage
+        function submitComment() {
+            const comment = document.getElementById('comment').value.trim();
+            if (comment !== '') {
+                const storedComments = JSON.parse(localStorage.getItem('donationComments')) || [];
+                storedComments.push(comment);
+                localStorage.setItem('donationComments', JSON.stringify(storedComments));
+                displayComments();
+                alert('Thank you for your donation! Your comment has been saved.');
+            } else {
+                alert('Please enter a comment before submitting.');
+            }
+        }
+
+        // Display comments
+        function displayComments() {
+            const commentsDiv = document.getElementById('comments');
+            commentsDiv.innerHTML = '';
+            const storedComments = JSON.parse(localStorage.getItem('donationComments')) || [];
+            storedComments.forEach((comment, index) => {
+                const commentDiv = document.createElement('div');
+                commentDiv.className = 'comment';
+                commentDiv.textContent = `${index + 1}. ${comment}`;
+                commentsDiv.appendChild(commentDiv);
+            });
+        }
+    </script>
+</body>
+
+</html>
