@@ -52,6 +52,7 @@
             position: absolute;
             bottom: 0;
             width: 100%;
+            z-index: 0;
         }
 
         img {
@@ -84,6 +85,7 @@
             width: 100%;
             text-align: center;
             display: none;
+            z-index: 1;
         }
 
         #cookie-buttons {
@@ -103,16 +105,6 @@
             margin-bottom: 10px;
             font-weight: bold;
         }
-
-        #refresh-button {
-            margin-top: 1em;
-            padding: 10px;
-            background-color: #3498db;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
     </style>
 </head>
 
@@ -129,7 +121,14 @@
         <h1>Lichess Connect Hub</h1>
     </header>
 
-
+    <nav>
+        <a href="#about">About</a>
+        <a href="#lichess-username">Your Lichess</a>
+        <a href="#news-updates">News/Updates</a>
+        <a href="#donate">Donate</a>
+        <a href="#faq">FAQ</a>
+        <a href="#lichess-blogs">Lichess Blogs</a>
+    </nav>
 
     <section id="about">
         <h2>About this Website</h2>
@@ -150,11 +149,6 @@
         </div>
     </section>
 
-    <footer>
-        <button id="refresh-button" onclick="refreshPage()">Refresh Lichess Style</button>
-        <p>&copy; 2024 Lichess Connect Hub. All rights reserved.</p>
-    </footer>
-
     <div class="links-section">
         <a href="#about">About Us</a>
         <a href="#news-updates">News/Updates</a>
@@ -162,6 +156,10 @@
         <a href="#faq">FAQ</a>
         <a href="#lichess-blogs">Lichess Blogs</a>
     </div>
+
+    <footer>
+        <p>&copy; 2024 Lichess Connect Hub. All rights reserved.</p>
+    </footer>
 
     <script>
         // Add local storage functionality for Lichess username
@@ -211,12 +209,6 @@
         function declineCookies() {
             localStorage.setItem('cookieConsent', 'declined');
             cookieConsent.style.display = 'none';
-        }
-
-        // Refresh page with Lichess style
-        function refreshPage() {
-            alert('Refreshing page with Lichess style...');
-            location.reload();
         }
     </script>
 </body>
