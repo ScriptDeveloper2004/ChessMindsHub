@@ -4,141 +4,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChessMinds Hub</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Arial', sans-serif;
+            background-color: #f2f2f2;
             margin: 0;
             padding: 0;
-            background-color: #f8f8f8;
             color: #333;
         }
 
         header {
-            background-color: #4CAF50;
+            background-color: #007BFF;
             color: #fff;
             text-align: center;
-            padding: 20px;
-        }
-
-        h1 {
-            margin: 0;
-        }
-
-        p {
-            margin: 10px 0 0;
-        }
-
-        #content {
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 20px;
-        }
-
-        footer {
-            background-color: #4CAF50;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-        #lichessInput {
-            display: flex;
-            align-items: center;
-            margin: 20px 0;
-        }
-
-        #lichessInput label {
-            margin-right: 10px;
-        }
-
-        #lichessInput input {
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 200px;
-        }
-
-        #storedUsername {
-            font-weight: bold;
-            margin-top: 10px;
-        }
-
-        #about {
-            margin-top: 20px;
-        }
-
-        #about h2 {
-            color: #4CAF50;
+            padding: 1em;
         }
 
         nav {
-            margin-top: 20px;
             display: flex;
             justify-content: space-around;
-            background-color: #333;
-            padding: 10px;
-            border-radius: 5px;
+            background-color: #343a40;
+            padding: 1em 0;
         }
 
         nav a {
             color: #fff;
             text-decoration: none;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 2em;
+        }
+
+        footer {
+            background-color: #007BFF;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1em;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            width: 70%;
+        }
+
+        button {
+            padding: 8px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
         }
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const storedUsername = localStorage.getItem('lichessUsername');
-            if (storedUsername) {
-                document.getElementById('storedUsername').innerText = `Stored Lichess Username: ${storedUsername}`;
-            }
-        });
-
-        document.getElementById('username').addEventListener('input', function () {
-            const usernameInput = this.value.trim();
-            localStorage.setItem('lichessUsername', usernameInput);
-        });
-    </script>
-    <title>ChessHub - Learn and Play Chess</title>
 </head>
 
 <body>
     <header>
-        <h1>ChessHub</h1>
-        <p>Learn and Play Chess</p>
+        <h1>ChessMinds Hub</h1>
     </header>
 
-    <section id="content">
-        <h2>Welcome to ChessHub!</h2>
-        <p>Explore a variety of chess-related content, from tutorials to strategy guides, all freely available for chess enthusiasts.</p>
-
-        <div id="lichessInput">
-            <label for="username">Enter your Lichess username:</label>
-            <input type="text" id="username" placeholder="Your Lichess username">
-        </div>
-
-        <p id="storedUsername"></p>
-
-        <div id="about">
-            <h2>About ChessHub</h2>
-            <p>ChessHub is a community-driven platform dedicated to providing valuable chess content. Whether you're a beginner or an experienced player, discover resources to enhance your skills and enjoy the world of chess.</p>
-        </div>
-    </section>
-
     <nav>
-        <a href="#about">About Us</a>
-        <a href="#faq">FAQ</a>
-        <a href="#updates">New Updates</a>
-        <a href="#lichess-team">Lichess Team</a>
+        <a href="#basics">Basics of Chess</a>
+        <a href="#expertise">Chess Expertise</a>
+        <a href="#rules">Rules</a>
+        <a href="#fide-rating">FIDE Rating</a>
+        <a href="#top-gms">Top 10 GMs</a>
+        <a href="#lichess-username">Lichess Username</a>
     </nav>
 
+    <section id="basics">
+        <h2>Basics of Chess</h2>
+        <img src="https://example.com/chessboard-image.jpg" alt="Chessboard">
+        <p>Learn the foundational elements of chess, from piece movement to basic strategies, in this comprehensive guide.</p>
+    </section>
+
+    <section id="expertise">
+        <h2>Chess Expertise</h2>
+        <p>Explore different levels of chess expertise, from beginners to grandmasters, and discover the key attributes that define each level.</p>
+    </section>
+
+    <section id="rules">
+        <h2>Rules of Chess</h2>
+        <p>Understand the official rules of chess, covering aspects such as castling, en passant, and promotion.</p>
+    </section>
+
+    <section id="fide-rating">
+        <h2>How FIDE Rating is Achieved</h2>
+        <p>Discover the process and criteria for achieving and maintaining a FIDE rating in the world of competitive chess.</p>
+    </section>
+
+    <section id="top-gms">
+        <h2>Top 10 Grandmasters</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Player</th>
+                    <th>Highest FIDE Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Add your top 10 GMs data here -->
+                <tr>
+                    <td>1</td>
+                    <td>Magnus Carlsen</td>
+                    <td>2882</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </section>
+
+    <section id="lichess-username">
+        <h2>Lichess Username</h2>
+        <p>Enter your Lichess username to stay connected with the ChessMinds community:</p>
+        <form id="lichess-form">
+            <input type="text" id="lichess-username-input" placeholder="Your Lichess Username">
+            <button type="button" onclick="saveUsername()">Submit</button>
+        </form>
+    </section>
+
     <footer>
-        <p>Contribute on <a href="https://github.com/yourusername/chesshub" target="_blank">GitHub</a></p>
+        <p>&copy; 2024 ChessMinds Hub. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Add local storage functionality for Lichess username
+        const lichessForm = document.getElementById('lichess-form');
+        const usernameInput = document.getElementById('lichess-username-input');
+
+        // Load stored username on page load
+        window.onload = function () {
+            const storedUsername = localStorage.getItem('lichessUsername');
+            if (storedUsername) {
+                usernameInput.value = storedUsername;
+            }
+        };
+
+        // Save username to local storage
+        function saveUsername() {
+            const username = usernameInput.value.trim();
+            if (username !== '') {
+                localStorage.setItem('lichessUsername', username);
+                alert('Lichess username saved successfully!');
+            } else {
+                alert('Please enter a valid Lichess username.');
+            }
+        }
+    </script>
 </body>
 
 </html>
