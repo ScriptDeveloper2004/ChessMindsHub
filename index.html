@@ -4,18 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChessMinds Hub</title>
+    <title>Lichess Connect Hub</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
+            background-color: #1f2732;
             margin: 0;
             padding: 0;
-            color: #333;
+            color: #fff;
         }
 
         header {
-            background-color: #2b3e50;
+            background-color: #2c3e50;
             color: #fff;
             text-align: center;
             padding: 1em;
@@ -39,7 +39,7 @@
         }
 
         footer {
-            background-color: #2b3e50;
+            background-color: #2c3e50;
             color: #fff;
             text-align: center;
             padding: 1em;
@@ -82,7 +82,7 @@
 
         button {
             padding: 8px;
-            background-color: #2b3e50;
+            background-color: #2c3e50;
             color: #fff;
             border: none;
             cursor: pointer;
@@ -100,77 +100,47 @@
 
 <body>
     <header>
-        <h1>ChessMinds Hub</h1>
+        <h1>Lichess Connect Hub</h1>
     </header>
 
     <nav>
-        <a href="#basics">Basics of Chess</a>
-        <a href="#expertise">Chess Expertise</a>
-        <a href="#rules">Rules</a>
-        <a href="#fide-rating">FIDE Rating</a>
-        <a href="#top-gms">Top 10 GMs</a>
-        <a href="#lichess-username">Lichess Username</a>
+        <a href="#leaderboard">Leaderboard</a>
+        <a href="#tournaments">Tournaments</a>
+        <a href="#analysis">Game Analysis</a>
+        <a href="#lichess-username">Your Lichess</a>
     </nav>
 
-    <section id="basics">
-        <h2>Basics of Chess</h2>
-        <img src="https://example.com/chessboard-image.jpg" alt="Chessboard">
-        <p>Learn the foundational elements of chess, from piece movement to basic strategies, in this comprehensive guide.</p>
+    <section id="leaderboard">
+        <h2>Leaderboard</h2>
+        <p>Explore the top Lichess players and their rankings on the global leaderboard.</p>
     </section>
 
-    <section id="expertise">
-        <h2>Chess Expertise</h2>
-        <p>Explore different levels of chess expertise, from beginners to grandmasters, and discover the key attributes that define each level.</p>
+    <section id="tournaments">
+        <h2>Tournaments</h2>
+        <p>Join exciting Lichess tournaments and compete against players from around the world.</p>
     </section>
 
-    <section id="rules">
-        <h2>Rules of Chess</h2>
-        <p>Understand the official rules of chess, covering aspects such as castling, en passant, and promotion.</p>
-    </section>
-
-    <section id="fide-rating">
-        <h2>How FIDE Rating is Achieved</h2>
-        <p>Discover the process and criteria for achieving and maintaining a FIDE rating in the world of competitive chess.</p>
-    </section>
-
-    <section id="top-gms">
-        <h2>Top 10 Grandmasters</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>Player</th>
-                    <th>Highest FIDE Rating</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Add your top 10 GMs data here -->
-                <tr>
-                    <td>1</td>
-                    <td>Magnus Carlsen</td>
-                    <td>2882</td>
-                </tr>
-                <!-- Add more rows as needed -->
-            </tbody>
-        </table>
+    <section id="analysis">
+        <h2>Game Analysis</h2>
+        <p>Improve your skills with in-depth analysis of your Lichess games and learn from your strategic decisions.</p>
     </section>
 
     <section id="lichess-username">
-        <h2>Lichess Username</h2>
-        <p>Enter your Lichess username to stay connected with the ChessMinds community:</p>
+        <h2>Your Lichess</h2>
+        <p>Enter your Lichess username to connect with the Lichess community:</p>
         <form id="lichess-form">
             <input type="text" id="lichess-username-input" placeholder="Your Lichess Username">
             <button type="button" onclick="saveUsername()">Submit</button>
         </form>
         <div id="lichess-username-list">
-            <h3>Username List</h3>
-            <!-- Display the list of saved usernames -->
+            <h3>Connected Users</h3>
+            <!-- Display the list of connected usernames -->
             <div id="username-list"></div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2024 ChessMinds Hub. All rights reserved.</p>
+        <p>&copy; 2024 Lichess Connect Hub. All rights reserved.</p>
     </footer>
 
     <script>
@@ -193,13 +163,13 @@
                 storedUsernames.push(username);
                 localStorage.setItem('lichessUsernames', JSON.stringify(storedUsernames));
                 displayUsernames(storedUsernames);
-                alert('Lichess username saved successfully!');
+                alert('Lichess username connected successfully!');
             } else {
                 alert('Please enter a valid Lichess username.');
             }
         }
 
-        // Display saved usernames
+        // Display connected usernames
         function displayUsernames(usernames) {
             usernameList.innerHTML = '';
             usernames.forEach((username, index) => {
