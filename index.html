@@ -87,6 +87,14 @@
             border: none;
             cursor: pointer;
         }
+
+        #lichess-username-list {
+            margin-top: 1em;
+        }
+
+        .username-list-item {
+            margin-bottom: 0.5em;
+        }
     </style>
 </head>
 
@@ -154,6 +162,11 @@
             <input type="text" id="lichess-username-input" placeholder="Your Lichess Username">
             <button type="button" onclick="saveUsername()">Submit</button>
         </form>
+        <div id="lichess-username-list">
+            <h3>Username List</h3>
+            <!-- Display the list of saved usernames -->
+            <div id="username-list"></div>
+        </div>
     </section>
 
     <footer>
@@ -164,24 +177,37 @@
         // Add local storage functionality for Lichess username
         const lichessForm = document.getElementById('lichess-form');
         const usernameInput = document.getElementById('lichess-username-input');
+        const usernameList = document.getElementById('username-list');
 
-        // Load stored username on page load
+        // Load stored usernames on page load
         window.onload = function () {
-            const storedUsername = localStorage.getItem('lichessUsername');
-            if (storedUsername) {
-                usernameInput.value = storedUsername;
-            }
+            const storedUsernames = JSON.parse(localStorage.getItem('lichessUsernames')) || [];
+            displayUsernames(storedUsernames);
         };
 
         // Save username to local storage
         function saveUsername() {
             const username = usernameInput.value.trim();
             if (username !== '') {
-                localStorage.setItem('lichessUsername', username);
+                const storedUsernames = JSON.parse(localStorage.getItem('lichessUsernames')) || [];
+                storedUsernames.push(username);
+                localStorage.setItem('lichessUsernames', JSON.stringify(storedUsernames));
+                displayUsernames(storedUsernames);
                 alert('Lichess username saved successfully!');
             } else {
                 alert('Please enter a valid Lichess username.');
             }
+        }
+
+        // Display saved usernames
+        function displayUsernames(usernames) {
+            usernameList.innerHTML = '';
+            usernames.forEach((username, index) => {
+                const listItem = document.createElement('div');
+                listItem.className = 'username-list-item';
+                listItem.textContent = `${index + 1}. ${username}`;
+                usernameList.appendChild(listItem);
+            });
         }
     </script>
 </body>
