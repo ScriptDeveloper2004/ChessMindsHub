@@ -55,26 +55,6 @@
             margin: 0 auto;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1em;
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #34495e;
-            color: #fff;
-        }
-
         input[type="text"] {
             padding: 8px;
             width: 70%;
@@ -95,39 +75,51 @@
         .username-list-item {
             margin-bottom: 0.5em;
         }
+
+        #cookie-consent {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 1em;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            display: none;
+        }
+
+        #cookie-buttons {
+            margin-top: 1em;
+        }
     </style>
 </head>
 
 <body>
+    <div id="cookie-consent">
+        <p>This website uses cookies to enhance your experience. Accept or decline?</p>
+        <div id="cookie-buttons">
+            <button onclick="acceptCookies()">Accept</button>
+            <button onclick="declineCookies()">Decline</button>
+        </div>
+    </div>
+
     <header>
         <h1>Lichess Connect Hub</h1>
     </header>
 
     <nav>
-        <a href="#leaderboard">Leaderboard</a>
-        <a href="#tournaments">Tournaments</a>
-        <a href="#analysis">Game Analysis</a>
+        <a href="#about">About</a>
         <a href="#lichess-username">Your Lichess</a>
     </nav>
 
-    <section id="leaderboard">
-        <h2>Leaderboard</h2>
-        <p>Explore the top Lichess players and their rankings on the global leaderboard.</p>
-    </section>
-
-    <section id="tournaments">
-        <h2>Tournaments</h2>
-        <p>Join exciting Lichess tournaments and compete against players from around the world.</p>
-    </section>
-
-    <section id="analysis">
-        <h2>Game Analysis</h2>
-        <p>Improve your skills with in-depth analysis of your Lichess games and learn from your strategic decisions.</p>
+    <section id="about">
+        <h2>About this Website</h2>
+        <p>Welcome to Lichess Connect Hub! Dive into the vibrant world of chess and connect with the Lichess community. This platform is designed for passionate chess players, whether you're a seasoned grandmaster or just starting your chess journey. Explore, connect, and elevate your chess experience with Lichess Connect Hub.</p>
     </section>
 
     <section id="lichess-username">
         <h2>Your Lichess</h2>
-        <p>Enter your Lichess username to connect with the Lichess community:</p>
+        <p>Enter your Lichess username to connect with the vibrant chess community. Share your victories, discuss strategies, and stay engaged with fellow enthusiasts. Your Lichess experience is just a click away!</p>
         <form id="lichess-form">
             <input type="text" id="lichess-username-input" placeholder="Your Lichess Username">
             <button type="button" onclick="saveUsername()">Submit</button>
@@ -179,6 +171,27 @@
                 usernameList.appendChild(listItem);
             });
         }
+
+        // Cookie consent functionality
+        const cookieConsent = document.getElementById('cookie-consent');
+
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'accepted');
+            cookieConsent.style.display = 'none';
+        }
+
+        function declineCookies() {
+            localStorage.setItem('cookieConsent', 'declined');
+            cookieConsent.style.display = 'none';
+        }
+
+        // Show cookie consent if not already accepted
+        window.onload = function () {
+            const consentStatus = localStorage.getItem('cookieConsent');
+            if (consentStatus !== 'accepted') {
+                cookieConsent.style.display = 'block';
+            }
+        };
     </script>
 </body>
 
