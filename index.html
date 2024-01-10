@@ -71,7 +71,7 @@
         <a href="chesscontent.html">Chess Content</a>
         <a href="chartsystem.html">Lichess Chart</a>
         <a href="#" id="sign-in">Sign in</a>
-        <a href="registration.html">Register</a> <!-- Added registration button -->
+        <a href="registration.html" id="register-button">Register</a>
     </nav>
 
     <section>
@@ -99,6 +99,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const signInSection = document.getElementById('sign-in');
+            const registerButton = document.getElementById('register-button');
             const usernameDisplay = document.getElementById('username-display');
             const copyButton = document.getElementById('copy-button');
             const storedUsername = localStorage.getItem('lichessUsername');
@@ -106,6 +107,7 @@
             if (storedUsername) {
                 signInSection.textContent = storedUsername;
                 signInSection.href = '#'; // Replace '#' with the link you want to redirect to
+                registerButton.style.display = 'none'; // Hide the register button
                 usernameDisplay.textContent = `Welcome, ${storedUsername}!`;
 
                 // Dummy copy username logic, replace it with your actual copy username logic
