@@ -7,6 +7,7 @@
     <title>Lichess Connect Hub</title>
     <style>
         /* Lichess CSS styling */
+        /* Add your Lichess CSS styling here */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -55,6 +56,40 @@
             width: 100%;
             z-index: 0;
         }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        #username-display {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            color: #fff;
+        }
+
+        #copy-button {
+            cursor: pointer;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        #sign-out-button {
+            cursor: pointer;
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 
@@ -64,13 +99,15 @@
     </header>
 
     <nav>
+        <!-- Check if the user is logged in -->
         <a href="yourlichess.html">Your Lichess</a>
         <a href="donation.html">Donate</a>
         <a href="Faq.html">FAQ</a>
         <a href="games.html">Game</a>
         <a href="chesscontent.html">Chess Content</a>
         <a href="chartsystem.html">Lichess Chart</a>
-        <a href="#" id="sign-in">Sign in</a>
+        <a href="registration.html">Sign in</a>
+      
     </nav>
 
     <section>
@@ -88,31 +125,36 @@
         <!-- Display username and copy button if logged in -->
         <div id="username-display"></div>
         <button id="copy-button">Copy Username</button>
+        <button id="sign-out-button" style="display: none;">Sign Out</button>
     </section>
 
     <footer>
         <p>&copy; 2024 Lichess Connect Hub. All rights reserved.</p>
     </footer>
 
-    <!-- Add the following script at the end of the body tag -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const signInSection = document.getElementById('sign-in');
-            const usernameDisplay = document.getElementById('username-display');
-            const copyButton = document.getElementById('copy-button');
-            const storedUsername = localStorage.getItem('lichessUsername');
+        // Get username from local storage
+        const storedUsername = localStorage.getItem('lichessUsername');
+        const usernameDisplay = document.getElementById('username-display');
+        const copyButton = document.getElementById('copy-button');
+        const signOutButton = document.getElementById('sign-out-button');
 
-            if (storedUsername) {
-                signInSection.textContent = storedUsername;
-                signInSection.href = '#'; // Replace '#' with the link you want to redirect to
-                usernameDisplay.textContent = `Welcome, ${storedUsername}!`;
+        if (storedUsername) {
+            usernameDisplay.textContent = `Welcome, ${storedUsername}!`;
+            signOutButton.style.display = 'inline-block'; // Show sign-out button
+        }
 
-                // Dummy copy username logic, replace it with your actual copy username logic
-                copyButton.addEventListener('click', () => {
-                    navigator.clipboard.writeText(storedUsername);
-                    alert('Username copied to clipboard!');
-                });
-            }
+        copyButton.addEventListener('click', () => {
+            // Copy username to clipboard
+            navigator.clipboard.writeText(storedUsername);
+            alert('Username copied to clipboard!');
+        });
+
+        signOutButton.addEventListener('click', () => {
+            // Clear username from local storage
+            localStorage.removeItem('lichessUsername');
+            // Redirect to registration page after sign out
+            window.location.href = 'registration.html';
         });
     </script>
 </body>
