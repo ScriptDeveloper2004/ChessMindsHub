@@ -71,8 +71,7 @@
             color: #fff;
         }
 
-        #copy-button,
-        #sign-out-button {
+        #copy-button {
             cursor: pointer;
             background-color: #3498db;
             color: #fff;
@@ -98,7 +97,9 @@
         <a href="games.html">Game</a>
         <a href="chesscontent.html">Chess Content</a>
         <a href="chartsystem.html">Lichess Chart</a>
-        <a id="sign-in-out" href="registration.html">Sign In</a>
+        <span id="username-display"></span>
+        <button id="copy-button">Copy Username</button>
+        <a id="sign-in-link" href="registration.html">Sign in</a>
     </nav>
 
     <section>
@@ -112,11 +113,6 @@
             asked questions, or diving into thrilling games, Lichess Connect Hub is your go-to destination. Join us on
             this
             exciting chess journey where strategy meets community, and every move counts.</p>
-
-        <!-- Display username and buttons based on login status -->
-        <div id="username-display"></div>
-        <button id="copy-button">Copy Username</button>
-        <button id="sign-out-button">Sign Out</button>
     </section>
 
     <footer>
@@ -128,40 +124,13 @@
         const storedUsername = localStorage.getItem('lichessUsername');
         const usernameDisplay = document.getElementById('username-display');
         const copyButton = document.getElementById('copy-button');
-        const signOutButton = document.getElementById('sign-out-button');
-        const signInOutLink = document.getElementById('sign-in-out');
+        const signInLink = document.getElementById('sign-in-link');
 
         if (storedUsername) {
             usernameDisplay.textContent = `Welcome, ${storedUsername}!`;
             copyButton.style.display = 'inline-block'; // Show copy button
-            signOutButton.style.display = 'inline-block'; // Show sign-out button
-            signInOutLink.textContent = 'Sign Out'; // Change link text to Sign Out
+            signInLink.style.display = 'none'; // Hide sign-in link if user is logged in
         }
-
-        copyButton.addEventListener('click', () => {
-            // Copy username to clipboard
-            navigator.clipboard.writeText(storedUsername);
-            alert('Username copied to clipboard!');
-        });
-
-        signOutButton.addEventListener('click', () => {
-            // Clear username from local storage
-            localStorage.removeItem('lichessUsername');
-            // Reload the page to reflect the changes
-            location.reload();
-        });
-
-        signInOutLink.addEventListener('click', () => {
-            // Redirect to the registration page (or your sign-in logic)
-            if (signInOutLink.textContent === 'Sign Out') {
-                // Clear username from local storage
-                localStorage.removeItem('lichessUsername');
-                // Reload the page to reflect the changes
-                location.reload();
-            } else {
-                window.location.href = 'registration.html';
-            }
-        });
     </script>
 </body>
 
