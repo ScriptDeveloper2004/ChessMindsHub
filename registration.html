@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lichess Connect Hub</title>
+    <title>Lichess Connect Hub - Registration</title>
     <style>
         /* Lichess CSS styling */
         body {
@@ -13,86 +13,92 @@
             padding: 0;
             color: #fff;
             background-color: #1f2732;
-        }
-
-        header {
-            background-color: #2c3e50;
-            color: #fff;
-            text-align: center;
-            padding: 1em;
-        }
-
-        nav {
             display: flex;
-            justify-content: space-around;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        form {
             background-color: #34495e;
-            padding: 1em 0;
-            margin-top: 1em;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 100%;
+            box-sizing: border-box;
         }
 
-        nav a {
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        button {
+            background-color: #3498db;
             color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-            margin: 0 15px;
-        }
-
-        section {
-            padding: 2em;
-            margin-top: 1em;
-            max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
         }
 
         footer {
-            background-color: #2c3e50;
-            color: #fff;
+            margin-top: 20px;
             text-align: center;
-            padding: 1em;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            z-index: 0;
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <h1>Lichess Connect Hub</h1>
-    </header>
+    <form id="registrationForm" onsubmit="registerUser(event)">
+        <h2>Register an Account</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
 
-    <nav>
-        <a href="yourlichess.html">Your Lichess</a>
-        <a href="donation.html">Donate</a>
-        <a href="Faq.html">FAQ</a>
-        <a href="games.html">Game</a>
-        <a href="chesscontent.html">Chess Content</a>
-        <a href="chartsystem.html">Lichess Chart</a>
-        <a href="#" id="sign-in">Sign in</a>
-    </nav>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
 
-    <section>
-        <h2>Registration</h2>
-        <!-- Your registration form goes here -->
-        <input type="text" id="username" placeholder="Username">
-        <input type="password" id="password" placeholder="Password">
-        <button id="register-button">Register</button>
-    </section>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="confirm-password">Re-enter Password:</label>
+        <input type="password" id="confirm-password" name="confirm-password" required>
+
+        <label>
+            <input type="checkbox" required> I accept the <a href="#">Terms and Conditions</a>.
+        </label>
+
+        <label>
+            <input type="checkbox" required> I have read the <a href="#">FAQ</a>.
+        </label>
+
+        <button type="submit">Register</button>
+    </form>
 
     <footer>
         <p>&copy; 2024 Lichess Connect Hub. All rights reserved.</p>
     </footer>
 
     <script>
-        // Dummy registration logic, replace it with your actual registration logic
-        document.getElementById('register-button').addEventListener('click', () => {
-            const username = document.getElementById('username').value;
-            localStorage.setItem('lichessUsername', username);
-            alert('Registration successful!');
-            location.href = 'index.html'; // Redirect to home page
-        });
+        function registerUser(event) {
+            event.preventDefault();
+            
+            // Dummy registration logic, replace it with your actual registration logic
+            
+            // Redirect to homepage after registration
+            window.location.href = 'index.html';
+        }
     </script>
 </body>
 
