@@ -58,6 +58,12 @@
             margin-bottom: 10px;
         }
 
+        .payment-methods {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+
         .comment-section {
             margin-top: 20px;
         }
@@ -94,14 +100,32 @@
 
         <div class="donation-currencies">
             <div class="donation-currency">$</div>
-            <div class="donation-currency">Â¢</div>
-            <div class="donation-currency">Â£</div>
-            <div class="donation-currency">â¬</div>
-            <div class="donation-currency">â±</div>
-            <div class="donation-currency">Â¥</div>
-            <div class="donation-currency">â¹</div>
+            <div class="donation-currency">¢</div>
+            <div class="donation-currency">£</div>
+            <div class="donation-currency">€</div>
+            <div class="donation-currency">₱</div>
+            <div class="donation-currency">¥</div>
+            <div class="donation-currency">₹</div>
             <div class="donation-currency">Dinar</div>
             <div class="donation-currency">Rand</div>
+        </div>
+
+        <div class="payment-methods">
+            <div>
+                <p>Donate via GPay:</p>
+                <img src="gpay_qr_code.png" alt="GPay QR Code" width="150">
+            </div>
+            <div>
+                <p>Donate via PayPal:</p>
+                <img src="paypal_qr_code.png" alt="PayPal QR Code" width="150">
+            </div>
+        </div>
+
+        <div class="comment-section">
+            <label for="comment-input">Drop your message or comment here:</label>
+            <textarea id="comment-input" rows="4"></textarea>
+            <button id="submit-comment" onclick="addComment()">Submit</button>
+            <div id="comment-list"></div>
         </div>
     </section>
 
@@ -112,19 +136,32 @@
     <script>
         // Comment section functionality
         const commentInput = document.getElementById('comment-input');
-        const submitComment = document.getElementById('submit-comment');
         const commentList = document.getElementById('comment-list');
 
-        submitComment.addEventListener('click', addComment);
+        // Load comments on page load
+        window.onload = function () {
+            const storedComments = JSON.parse(localStorage.getItem('donationComments')) || [];
+            displayComments(storedComments);
+        };
 
         function addComment() {
             const commentText = commentInput.value.trim();
             if (commentText !== '') {
-                const commentItem = document.createElement('div');
-                commentItem.textContent = commentText;
-                commentList.appendChild(commentItem);
+                const storedComments = JSON.parse(localStorage.getItem('donationComments')) || [];
+                storedComments.push(commentText);
+                localStorage.setItem('donationComments', JSON.stringify(storedComments));
+                displayComments(storedComments);
                 commentInput.value = '';
             }
+        }
+
+        function displayComments(comments) {
+            commentList.innerHTML = '';
+            comments.forEach((comment, index) => {
+                const commentItem = document.createElement('div');
+                commentItem.textContent = `${index + 1}. ${comment}`;
+                commentList.appendChild(commentItem);
+            });
         }
     </script>
 </body>
