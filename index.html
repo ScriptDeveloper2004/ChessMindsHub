@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lichess Connect Hub</title>
     <style>
-        /* Lichess CSS styling */
+        /* Your index page styling goes here */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -70,51 +70,24 @@
         <a href="games.html">Game</a>
         <a href="chesscontent.html">Chess Content</a>
         <a href="chartsystem.html">Lichess Chart</a>
-        <a href="#" id="sign-in">Sign in</a>
-        <a href="registration.html" id="register-button">Register</a>
+        <a href="#" id="sign-in"></a>
     </nav>
 
     <section>
-        <h2>About Lichess Connect Hub</h2>
-        <p>Welcome to Lichess Connect Hub, a thriving community hub designed for passionate chess enthusiasts. Immerse
-            yourself
-            in the world of chess, connect with fellow Lichess players, and elevate your gaming experience. Whether
-            you're
-            seeking personalized insights on Your Lichess, considering a donation to support our platform, exploring
-            frequently
-            asked questions, or diving into thrilling games, Lichess Connect Hub is your go-to destination. Join us on
-            this
-            exciting chess journey where strategy meets community, and every move counts.</p>
-
-        <!-- Display username and copy button if logged in -->
-        <div id="username-display"></div>
-        <button id="copy-button">Copy Username</button>
+        <!-- Your homepage content goes here -->
     </section>
 
     <footer>
         <p>&copy; 2024 Lichess Connect Hub. All rights reserved.</p>
     </footer>
 
-    <!-- Add the following script at the end of the body tag -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const signInSection = document.getElementById('sign-in');
-            const registerButton = document.getElementById('register-button');
-            const usernameDisplay = document.getElementById('username-display');
-            const copyButton = document.getElementById('copy-button');
             const storedUsername = localStorage.getItem('lichessUsername');
 
             if (storedUsername) {
                 signInSection.textContent = storedUsername;
-                signInSection.href = '#'; // Replace '#' with the link you want to redirect to
-                registerButton.style.display = 'none'; // Hide the register button
-                usernameDisplay.textContent = `Welcome, ${storedUsername}!`;
-
-                // Dummy copy username logic, replace it with your actual copy username logic
-                copyButton.addEventListener('click', () => {
-                    navigator.clipboard.writeText(storedUsername);
-                    alert('Username copied to clipboard!');
-                });
             }
         });
     </script>
