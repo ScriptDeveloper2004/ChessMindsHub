@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lichess Connect Hub</title>
     <style>
-        /* Your index page styling goes here */
+        /* Lichess CSS styling */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -67,30 +67,23 @@
         <a href="yourlichess.html">Your Lichess</a>
         <a href="donation.html">Donate</a>
         <a href="Faq.html">FAQ</a>
-        <a href="games.html">Game</a>
         <a href="chesscontent.html">Chess Content</a>
         <a href="chartsystem.html">Lichess Chart</a>
-        <a href="#" id="sign-in"></a>
     </nav>
 
     <section>
-        <!-- Your homepage content goes here -->
+        <h2>About Lichess Connect Hub</h2>
+        <p>Welcome to Lichess Connect Hub, a thriving community hub designed for passionate chess enthusiasts. Immerse yourself
+            in the world of chess, connect with fellow Lichess players, and elevate your gaming experience. Whether you're
+            seeking personalized insights on Your Lichess, considering a donation to support our platform, exploring frequently
+            asked questions, or diving into thrilling games, Lichess Connect Hub is your go-to destination. Join us on
+            this
+            exciting chess journey where strategy meets community, and every move counts.</p>
     </section>
 
     <footer>
         <p>&copy; 2024 Lichess Connect Hub. All rights reserved.</p>
     </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const signInSection = document.getElementById('sign-in');
-            const storedUsername = localStorage.getItem('lichessUsername');
-
-            if (storedUsername) {
-                signInSection.textContent = storedUsername;
-            }
-        });
-    </script>
 </body>
 
 </html>
