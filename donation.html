@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lichess Connect Hub - Donate</title>
+    <link rel="stylesheet" href="your-lichess-css-styles.css">
     <style>
-        /* Add Lichess CSS styling here */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -25,9 +25,28 @@
         section {
             padding: 2em;
             margin-top: 1em;
-            max-width: 400px;
+            max-width: 800px;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #fff;
+            padding: 10px;
+            text-align: left;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
         }
 
         footer {
@@ -40,48 +59,6 @@
             width: 100%;
             z-index: 0;
         }
-
-        .donation-info {
-            margin-top: 20px;
-        }
-
-        .donation-currencies {
-            margin-top: 20px;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-
-        .donation-currency {
-            color: #fff;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .payment-methods {
-            margin-top: 20px;
-            display: flex;
-            justify-content: space-around;
-        }
-
-        .comment-section {
-            margin-top: 20px;
-        }
-
-        #comment-input {
-            width: 70%;
-            padding: 8px;
-        }
-
-        #submit-comment {
-            margin-top: 10px;
-            padding: 8px;
-            cursor: pointer;
-        }
-
-        #comment-list {
-            margin-top: 10px;
-        }
     </style>
 </head>
 
@@ -91,41 +68,55 @@
     </header>
 
     <section>
-        <p>Make a difference by contributing to our cause. Your donation helps support NGOs and various charitable initiatives.</p>
+        <h2>Donate to Support</h2>
+        <p>Your contribution makes a difference! Choose your preferred currency and donate securely via GPay or PayPal.</p>
 
-        <div class="donation-info">
-            <h2>Where Does Your Donation Go?</h2>
-            <p>Your contribution goes directly to NGOs, supporting their efforts in making a positive impact on society. Together, we can make a difference!</p>
-        </div>
+        <table>
+            <tr>
+                <th>Currency</th>
+                <th>Accepted Symbol</th>
+            </tr>
+            <tr>
+                <td>US Dollar</td>
+                <td>$</td>
+            </tr>
+            <tr>
+                <td>Cent</td>
+                <td>¢</td>
+            </tr>
+            <tr>
+                <td>British Pound</td>
+                <td>£</td>
+            </tr>
+            <tr>
+                <td>Euro</td>
+                <td>€</td>
+            </tr>
+            <tr>
+                <td>Philippine Peso</td>
+                <td>₱</td>
+            </tr>
+            <tr>
+                <td>Japanese Yen</td>
+                <td>¥</td>
+            </tr>
+            <tr>
+                <td>Indian Rupee</td>
+                <td>₹</td>
+            </tr>
+        </table>
 
-        <div class="donation-currencies">
-            <div class="donation-currency">$</div>
-            <div class="donation-currency">¢</div>
-            <div class="donation-currency">£</div>
-            <div class="donation-currency">€</div>
-            <div class="donation-currency">₱</div>
-            <div class="donation-currency">¥</div>
-            <div class="donation-currency">₹</div>
-            <div class="donation-currency">Dinar</div>
-            <div class="donation-currency">Rand</div>
-        </div>
+        <p>Scan the QR codes below with your GPay or PayPal app to make a donation:</p>
 
-        <div class="payment-methods">
-            <div>
-                <p>Donate via GPay:</p>
-                <img src="gpay_qr_code.png" alt="GPay QR Code" width="150">
-            </div>
-            <div>
-                <p>Donate via PayPal:</p>
-                <img src="paypal_qr_code.png" alt="PayPal QR Code" width="150">
-            </div>
-        </div>
+        <img src="gpay_qr_code.png" alt="GPay QR Code">
+        <img src="paypal_qr_code.png" alt="PayPal QR Code">
 
-        <div class="comment-section">
-            <label for="comment-input">Drop your message or comment here:</label>
-            <textarea id="comment-input" rows="4"></textarea>
-            <button id="submit-comment" onclick="addComment()">Submit</button>
-            <div id="comment-list"></div>
+        <div id="comment-section">
+            <h3>Leave a Comment:</h3>
+            <textarea id="comment-input" rows="4" cols="50" placeholder="Write your comment here..."></textarea>
+            <br>
+            <button onclick="leaveComment()">Submit Comment</button>
+            <p id="comment-message"></p>
         </div>
     </section>
 
@@ -134,34 +125,15 @@
     </footer>
 
     <script>
-        // Comment section functionality
-        const commentInput = document.getElementById('comment-input');
-        const commentList = document.getElementById('comment-list');
+        function leaveComment() {
+            const commentInput = document.getElementById('comment-input').value.trim();
+            const commentMessage = document.getElementById('comment-message');
 
-        // Load comments on page load
-        window.onload = function () {
-            const storedComments = JSON.parse(localStorage.getItem('donationComments')) || [];
-            displayComments(storedComments);
-        };
-
-        function addComment() {
-            const commentText = commentInput.value.trim();
-            if (commentText !== '') {
-                const storedComments = JSON.parse(localStorage.getItem('donationComments')) || [];
-                storedComments.push(commentText);
-                localStorage.setItem('donationComments', JSON.stringify(storedComments));
-                displayComments(storedComments);
-                commentInput.value = '';
+            if (commentInput !== '') {
+                commentMessage.textContent = 'Thank you for your comment!';
+            } else {
+                commentMessage.textContent = 'Please enter a valid comment.';
             }
-        }
-
-        function displayComments(comments) {
-            commentList.innerHTML = '';
-            comments.forEach((comment, index) => {
-                const commentItem = document.createElement('div');
-                commentItem.textContent = `${index + 1}. ${comment}`;
-                commentList.appendChild(commentItem);
-            });
         }
     </script>
 </body>
