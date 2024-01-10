@@ -12,6 +12,7 @@ Lichess Connect Hub is an open-source platform designed to enhance your Lichess 
 - **Community Engagement:** Connect with fellow Lichess by searching their id on this platform .
 - **Donation Platform:** Support the Lichess Connect Hub community through secure GPay and PayPal donations.
 - **FAQ Section:** Find answers to commonly asked questions about the website.
+- **Registration Account:** Added registartion page , where ussr can create their account .
 
 ## Getting Started
 
