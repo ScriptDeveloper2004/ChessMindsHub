@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lichess Connect Hub - Registration</title>
+    <title>Lichess Connect Hub</title>
     <style>
+        /* Lichess CSS styling */
+        /* Add your Lichess CSS styling here */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -21,10 +23,25 @@
             padding: 1em;
         }
 
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #34495e;
+            padding: 1em 0;
+            margin-top: 1em;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 15px;
+        }
+
         section {
             padding: 2em;
             margin-top: 1em;
-            max-width: 400px;
+            max-width: 1000px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -40,56 +57,73 @@
             z-index: 0;
         }
 
-        form {
-            display: flex;
-            flex-direction: column;
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
         }
 
-        label {
-            margin-bottom: 0.5em;
+        #username-display {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            color: #fff;
         }
 
-        input {
-            margin-bottom: 1em;
-            padding: 0.5em;
-            font-size: 16px;
-        }
-
-        button {
+        #copy-button {
+            cursor: pointer;
             background-color: #3498db;
             color: #fff;
             border: none;
-            padding: 0.5em 1em;
-            cursor: pointer;
-            font-size: 16px;
+            padding: 5px 10px;
+            font-size: 14px;
+            margin-top: 10px;
         }
     </style>
 </head>
 
 <body>
     <header>
-        <h1>Lichess Connect Hub - Registration</h1>
+        <h1>Lichess Connect Hub</h1>
     </header>
 
+    <nav>
+        <!-- Check if the user is logged in -->
+        <a href="yourlichess.html">Your Lichess</a>
+        <a href="donation.html">Donate</a>
+        <a href="Faq.html">FAQ</a>
+        <a href="games.html">Game</a>
+        <a href="chesscontent.html">Chess Content</a>
+        <a href="chartsystem.html">Lichess Chart</a>
+        <!-- Show username or sign-in link based on user login state -->
+        <div id="sign-in-section"></div>
+    </nav>
+
     <section>
-        <form id="registrationForm">
+        <h2>Registration</h2>
+        <!-- Registration form here -->
+        <div>
             <label for="username">Username:</label>
-            <input type="text" id="username" required>
-
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
             <label for="email">Email:</label>
-            <input type="email" id="email" required>
-
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
             <label for="password">Password:</label>
-            <input type="password" id="password" required>
-
-            <label for="confirmPassword">Confirm Password:</label>
-            <input type="password" id="confirmPassword" required>
-
-            <label for="terms">I agree to the terms and services:</label>
-            <input type="checkbox" id="terms" required>
-
-            <button type="button" onclick="registerUser()">Register</button>
-        </form>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" name="confirm-password" required>
+        </div>
+        <div>
+            <input type="checkbox" id="terms" name="terms" required>
+            <label for="terms">I agree to the terms and conditions</label>
+        </div>
+        <button id="register-button">Register</button>
     </section>
 
     <footer>
@@ -97,27 +131,14 @@
     </footer>
 
     <script>
-        function registerUser() {
-            // Perform basic client-side validation
+        // Registration logic here
+
+        document.getElementById('register-button').addEventListener('click', () => {
             const username = document.getElementById('username').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            const terms = document.getElementById('terms').checked;
-
-            if (!username || !email || !password || !confirmPassword || !terms) {
-                alert('Please fill in all fields and agree to the terms.');
-                return;
-            }
-
-            if (password !== confirmPassword) {
-                alert('Passwords do not match.');
-                return;
-            }
-
-            // Redirect to homepage (index.html)
+            localStorage.setItem('lichessUsername', username);
+            // Redirect to home page after registration
             window.location.href = 'index.html';
-        }
+        });
     </script>
 </body>
 
