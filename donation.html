@@ -5,18 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lichess Connect Hub - Donate</title>
+    <link rel="stylesheet" href="your-lichess-css-styles.css">
     <style>
-        /* Lichess CSS styling */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             color: #fff;
-            background-color: #1e1e1e;
+            background-color: #1f2732;
         }
 
         header {
-            background-color: #252525;
+            background-color: #2c3e50;
             color: #fff;
             text-align: center;
             padding: 1em;
@@ -25,7 +25,7 @@
         section {
             padding: 2em;
             margin-top: 1em;
-            max-width: 600px;
+            max-width: 800px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -37,18 +37,20 @@
         }
 
         th, td {
+            border: 1px solid #fff;
             padding: 10px;
             text-align: left;
-            border-bottom: 1px solid #ddd;
         }
 
-        th {
-            background-color: #252525;
-            color: #fff;
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
         }
 
         footer {
-            background-color: #252525;
+            background-color: #2c3e50;
             color: #fff;
             text-align: center;
             padding: 1em;
@@ -56,23 +58,6 @@
             bottom: 0;
             width: 100%;
             z-index: 0;
-        }
-
-        #comment-section {
-            margin-top: 30px;
-        }
-
-        #comment-form {
-            margin-top: 20px;
-        }
-
-        #comments {
-            margin-top: 20px;
-        }
-
-        .comment {
-            border-bottom: 1px solid #ddd;
-            padding: 10px;
         }
     </style>
 </head>
@@ -83,48 +68,55 @@
     </header>
 
     <section>
-        <p>Your generosity helps support the Lichess Connect Hub community. Choose your preferred currency for donation:</p>
+        <h2>Donate to Support</h2>
+        <p>Your contribution makes a difference! Choose your preferred currency and donate securely via GPay or PayPal.</p>
 
         <table>
-            <thead>
-                <tr>
-                    <th>Currency</th>
-                    <th>Conversion Rate</th>
-                    <th>Donate Link</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>£ (British Pound)</td>
-                    <td>1.0</td>
-                    <td><a href="https://www.paypal.com/uk/home" target="_blank">Donate via PayPal</a></td>
-                </tr>
-                <tr>
-                    <td>¢ (Cent)</td>
-                    <td>0.01</td>
-                    <td><a href="https://www.paypal.com" target="_blank">Donate via PayPal</a></td>
-                </tr>
-                <!-- Add more currency rows as needed -->
-            </tbody>
+            <tr>
+                <th>Currency</th>
+                <th>Accepted Symbol</th>
+            </tr>
+            <tr>
+                <td>US Dollar</td>
+                <td>$</td>
+            </tr>
+            <tr>
+                <td>Cent</td>
+                <td>Â¢</td>
+            </tr>
+            <tr>
+                <td>British Pound</td>
+                <td>Â£</td>
+            </tr>
+            <tr>
+                <td>Euro</td>
+                <td>â¬</td>
+            </tr>
+            <tr>
+                <td>Philippine Peso</td>
+                <td>â±</td>
+            </tr>
+            <tr>
+                <td>Japanese Yen</td>
+                <td>Â¥</td>
+            </tr>
+            <tr>
+                <td>Indian Rupee</td>
+                <td>â¹</td>
+            </tr>
         </table>
 
-        <p>Scan the QR code below to donate via GPay:</p>
-        <!-- Add your GPay QR code image or link here -->
-        <img src="your_gpay_qr_code_image.jpg" alt="GPay QR Code">
+        <p>Scan the QR codes below with your GPay or PayPal app to make a donation:</p>
 
-        <p>Thank you for your contribution! You're making a positive impact on the Lichess Connect Hub.</p>
+        <img src="gpay_qr_code.png" alt="GPay QR Code">
+        <img src="paypal_qr_code.png" alt="PayPal QR Code">
 
-        <!-- Comment Section -->
         <div id="comment-section">
-            <h2>Donation Comments</h2>
-            <div id="comments"></div>
-            <form id="comment-form">
-                <label for="comment">Leave a comment about your donation:</label>
-                <br>
-                <textarea id="comment" rows="3" cols="40"></textarea>
-                <br>
-                <button type="button" onclick="submitComment()">Submit Comment</button>
-            </form>
+            <h3>Leave a Comment:</h3>
+            <textarea id="comment-input" rows="4" cols="50" placeholder="Write your comment here..."></textarea>
+            <br>
+            <button onclick="leaveComment()">Submit Comment</button>
+            <p id="comment-message"></p>
         </div>
     </section>
 
@@ -133,36 +125,15 @@
     </footer>
 
     <script>
-        // Retrieve comments from local storage on page load
-        window.onload = function () {
-            displayComments();
-        };
+        function leaveComment() {
+            const commentInput = document.getElementById('comment-input').value.trim();
+            const commentMessage = document.getElementById('comment-message');
 
-        // Save comment to local storage
-        function submitComment() {
-            const comment = document.getElementById('comment').value.trim();
-            if (comment !== '') {
-                const storedComments = JSON.parse(localStorage.getItem('donationComments')) || [];
-                storedComments.push(comment);
-                localStorage.setItem('donationComments', JSON.stringify(storedComments));
-                displayComments();
-                alert('Thank you for your donation! Your comment has been saved.');
+            if (commentInput !== '') {
+                commentMessage.textContent = 'Thank you for your comment!';
             } else {
-                alert('Please enter a comment before submitting.');
+                commentMessage.textContent = 'Please enter a valid comment.';
             }
-        }
-
-        // Display comments
-        function displayComments() {
-            const commentsDiv = document.getElementById('comments');
-            commentsDiv.innerHTML = '';
-            const storedComments = JSON.parse(localStorage.getItem('donationComments')) || [];
-            storedComments.forEach((comment, index) => {
-                const commentDiv = document.createElement('div');
-                commentDiv.className = 'comment';
-                commentDiv.textContent = `${index + 1}. ${comment}`;
-                commentsDiv.appendChild(commentDiv);
-            });
         }
     </script>
 </body>
