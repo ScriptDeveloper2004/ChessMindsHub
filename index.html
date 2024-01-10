@@ -79,7 +79,6 @@
             padding: 5px 10px;
             font-size: 14px;
             margin-top: 10px;
-            display: none;
         }
     </style>
 </head>
@@ -97,9 +96,7 @@
         <a href="games.html">Game</a>
         <a href="chesscontent.html">Chess Content</a>
         <a href="chartsystem.html">Lichess Chart</a>
-        <span id="username-display"></span>
-        <button id="copy-button">Copy Username</button>
-        <a id="sign-in-link" href="registration.html">Sign in</a>
+        <a href="registration.html">Sign in</a>
     </nav>
 
     <section>
@@ -113,6 +110,10 @@
             asked questions, or diving into thrilling games, Lichess Connect Hub is your go-to destination. Join us on
             this
             exciting chess journey where strategy meets community, and every move counts.</p>
+
+        <!-- Display username and copy button if logged in -->
+        <div id="username-display"></div>
+        <button id="copy-button">Copy Username</button>
     </section>
 
     <footer>
@@ -124,13 +125,16 @@
         const storedUsername = localStorage.getItem('lichessUsername');
         const usernameDisplay = document.getElementById('username-display');
         const copyButton = document.getElementById('copy-button');
-        const signInLink = document.getElementById('sign-in-link');
 
         if (storedUsername) {
             usernameDisplay.textContent = `Welcome, ${storedUsername}!`;
-            copyButton.style.display = 'inline-block'; // Show copy button
-            signInLink.style.display = 'none'; // Hide sign-in link if user is logged in
         }
+
+        copyButton.addEventListener('click', () => {
+            // Copy username to clipboard
+            navigator.clipboard.writeText(storedUsername);
+            alert('Username copied to clipboard!');
+        });
     </script>
 </body>
 
